@@ -32,7 +32,7 @@
             callbacks:{
                 onEpochEnd:
                     function(epoch, logs) {
-                        console.log('epoch', epoch, logs);
+                        console.log('epoch', epoch, logs, 'RMSE=>', Math.sqrt(logs.loss));
                     }
             }
         };
@@ -49,6 +49,33 @@
             var nextResult = model.predict(nextCause);
             nextResult.print();
         });
+
+        /*
+                var fitParam = {
+            epochs: 100,
+            callbacks:{
+                onEpochEnd:
+                    function(epoch, logs) {
+                        console.log('epoch', epoch, logs, 'RMSE=>', Math.sqrt(logs.loss));
+                    }
+            }
+        };
+
+        model.fit(cause, result, fitParam).then((result)=>{
+            // 4. 모델을 이제 사용한다.
+            // 4-1. 기존의 데이터를 이용해야 한다.
+            var predictResult = model.predict(cause); // 이 결과는 Tensor
+            predictResult.print();
+
+            // 4-2. 새로운 데이터를 이용한다.
+            var nextWeekTemp = [15, 16, 17, 18, 19];
+            var nextCause = tf.tensor(nextWeekTemp);
+            var nextResult = model.predict(nextCause);
+            nextResult.print();
+        });
+        
+        를 복사해서 콘솔에서 rmse를 거의 수렴할 때까지 반복해서 결과를 파악한다.
+        */
     </script>
 </body>
 </html>
