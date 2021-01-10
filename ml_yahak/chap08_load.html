@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chap 08</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+</head>
+<body>
+    <script>
+        // 모델 불러오기
+        const model = tf.loadLayersModel('localstorage://lemon').then((model) => {
+            model.predict(tf.tensor([20])).print();
+        });
+    </script> 
+</body>
+</html>

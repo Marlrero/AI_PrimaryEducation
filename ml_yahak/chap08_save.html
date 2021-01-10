@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chap 08</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+</head>
+<body>
+    <script>
+        var temp = [20, 21, 22, 23];
+        var sale = [40, 42, 44, 46];
+        var cause = tf.tensor(temp);
+        var result = tf.tensor(sale);
+
+        var X = tf.input({ shape: [1] });
+        var Y = tf.layers.dense({ units: 1 }).apply(X);
+        var model = tf.model({inputs: X, outputs: Y });
+        var compileParam = { optimizer: tf.train.adam(), loss: tf.losses.meanSquaredError };
+        model.compile(compileParam);
+
+        var fitParam = {
+            epochs: 100,
+            callbacks:{
+                onEpochEnd:
+                    function(epoch, logs) {
+                        console.log('epoch', epoch, logs, 'RMSE=>', Math.sqrt(logs.loss));
+                    }
+            }
+        };
+
+        model.fit(cause, result, fitParam).then((result)=>{
+            var predictResult = model.predict(cause);
+            predictResult.print();
+
+            // 1. model save
+            //model.save('downloads://lemon');
+            // lemon.json, lemon.weights.bin
+
+            // 2. local storage save
+            model.save('localstorage://lemon');
+        });
+    </script> 
+</body>
+</html>
