@@ -74,8 +74,21 @@
             nextResult.print();
         });
         
-        를 복사해서 콘솔에서 rmse를 거의 수렴할 때까지 반복해서 결과를 파악한다.
+        를 복사해서 콘솔에서 rmse를 거의 0에 가까워질 때까지 반복해서 결과를 파악한다.
         */
-    </script>
+
+        // 모델 사용하기
+        // model.predict(tf.tensor([20])).print()
+        // model.predict(tf.tensor([20])).arraySync()
+        // model.predict(tf.tensor([20])).arraySync()[0]   // array 
+        // model.predict(tf.tensor([20])).arraySync()[0][0] // 원시 데이터
+
+        // weight와 bias 보기
+        // var weights = model.getWeights()
+        // weights
+        // var weight = weights[0].arraySync()[0][0]
+        // var bias = weights[1].arraySync()[0]
+        // weight*20 + bias       // 와 model.predict(tf.tensor([20])).arraySync()[0][0] 비슷함.
+    </script> 
 </body>
 </html>
